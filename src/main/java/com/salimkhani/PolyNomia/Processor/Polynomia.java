@@ -8,7 +8,8 @@ import java.util.Locale;
 
 /*
 * Mahdi Salimkhani
-* Working with Polynomials*/
+* Working with Polynomials
+* */
 
 class PolyPart
 {
@@ -54,7 +55,9 @@ public class Polynomia{
         sb.append("\n}");
         return sb.toString();
     }
-
+    /*
+    TODO add, sub, multi, div functions
+    *  */
     private void process()
     {
         String formatted = _polyString.toLowerCase(Locale.ROOT).replace("+","@+").replace("-","@-");
