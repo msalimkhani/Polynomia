@@ -6,6 +6,10 @@ import com.salimkhani.Modules.Property;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/*
+* Mahdi Salimkhani
+* Working with Polynomials*/
+
 class PolyPart
 {
     final Property<Double> Zarib;
