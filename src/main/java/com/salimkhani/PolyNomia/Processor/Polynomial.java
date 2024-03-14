@@ -1,9 +1,7 @@
 package com.salimkhani.PolyNomia.Processor;
 
 
-import com.salimkhani.Modules.Property;
-
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.Locale;
 
 /*
@@ -11,27 +9,14 @@ import java.util.Locale;
 * Working with Polynomials
 * */
 
-class PolyPart
-{
-    final Property<Double> Zarib;
-    final Property<Double> Tavan;
-    public PolyPart(Double zarib, Double tavan)
-    {
-        Zarib = new Property<>(zarib);
-        Tavan = new Property<>(tavan);
-    }
-    public double Value(Double x)
-    {
-        return (Zarib.get() * Math.pow(x, Tavan.get()));
-    }
-}
-public class Polynomia{
+
+public class Polynomial{
 
     private final String _polyString;
-    private ArrayList<PolyPart> polyParts;
-    public Polynomia(String polyString) {
+    private final LinkedList<PolyPart> polyParts;
+    public Polynomial(String polyString) {
         _polyString = polyString;
-        polyParts = new ArrayList<>();
+        polyParts = new LinkedList<>();
         process();
     }
     public double calculate(double x)
@@ -45,7 +30,7 @@ public class Polynomia{
     }
     @Override
     public String toString() {
-        final StringBuffer sb = new StringBuffer("Polynomia{");
+        final StringBuffer sb = new StringBuffer("Polynomial{");
         sb.append("\n_polyString='").append(_polyString).append('\'');
         sb.append(",\npolyParts=");
         for (var item : polyParts)
@@ -58,6 +43,9 @@ public class Polynomia{
     /*
     TODO add, sub, multi, div functions
     *  */
+
+
+
     private void process()
     {
         String formatted = _polyString.toLowerCase(Locale.ROOT).replace("+","@+").replace("-","@-");
@@ -77,7 +65,7 @@ public class Polynomia{
             String sp0 = sp[0].replace("x","");
             if(sp0.equals("+") || sp0.equals("-") || sp0.isEmpty())
                 sp0 += "1";
-            PolyPart part = new PolyPart(Double.parseDouble(sp0), Double.parseDouble(sp[1]));
+            PolyPart part = new PolyPart(Double.parseDouble(sp0), Integer.parseInt(sp[1]));
             polyParts.add(part);
         }
         if(!powState && xState)
@@ -88,13 +76,13 @@ public class Polynomia{
 
             if(sp0.equals("+") || sp0.equals("-") || sp0.isEmpty())
                 sp0 += "1";
-            PolyPart part = new PolyPart(Double.parseDouble(sp0), 1.0);
+            PolyPart part = new PolyPart(Double.parseDouble(sp0), 1);
             polyParts.add(part);
         }
         if(!powState && !xState)
         {
             String sp = value.replace("@","");
-            PolyPart polyPart = new PolyPart(Double.parseDouble(sp), 0.0);
+            PolyPart polyPart = new PolyPart(Double.parseDouble(sp), 0);
             polyParts.add(polyPart);
         }
     }

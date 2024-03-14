@@ -1,7 +1,11 @@
+
 plugins {
     id("java")
+    id("application")
 }
-
+application {
+    mainClassName = "com.salimkhani.Main"
+}
 group = "com.salimkhani"
 version = "1.0-SNAPSHOT"
 
